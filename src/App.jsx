@@ -269,7 +269,7 @@ function App() {
     <>
       <div className="navw"><nav>
         <a className="brand" href="#home"><img src="img/avatar.webp" alt=""/>Sanjeeth.</a>
-        <div className="links"><a href="#home">Home</a><a href="#services">Services</a><a href="#flow">Growth flow</a><a href="#toolkit">Toolkit</a><a href="#about">About</a><a href="#experience">Experience</a><a href="#campaigns">Campaigns</a><a href="Sanjeeth_Kumar_CV.pdf" target="_blank" rel="noopener">Resume</a></div>
+        <div className="links"><a href="#home">Home</a><a href="#services">Services</a><a href="#flow">Growth flow</a><a href="#toolkit">Toolkit</a><a href="#about">About</a><a href="#experience">Experience</a><a href="#campaigns">Campaigns</a><a href="https://drive.google.com/drive/folders/1yYnsy01--KET6TybK1a1zKqZ3tM5W8T8" target="_blank" rel="noopener">Portfolio</a><a href="Sanjeeth_Kumar_CV.pdf" target="_blank" rel="noopener">Resume</a></div>
         <a className="cta" href="#contact">Let's talk <I n="arrow"/></a>
       </nav></div>
 
@@ -304,7 +304,7 @@ function App() {
           <div className="stage">
             <Orbit/>
             <div className="pic"><div className="ring"/><div className="disc"/><img className="me" src="img/photo.webp" alt="Sanjeeth Kumar"/></div>
-            <div className="hbtns"><a className="btn" href="#campaigns">Portfolio <i><I n="arrow"/></i></a><a className="btn w" href="#contact">Hire me</a></div>
+            <div className="hbtns"><a className="btn" href="https://drive.google.com/drive/folders/1yYnsy01--KET6TybK1a1zKqZ3tM5W8T8" target="_blank" rel="noopener">Portfolio <i><I n="arrow"/></i></a><a className="btn w" href="#contact">Hire me</a></div>
           </div>
           <div className="side r">
             <div><span className="quote">“</span><p className="qt">Creative production and marketing execution under one roof.</p></div>
@@ -396,6 +396,7 @@ function App() {
             <div className="tgs">{['Branding','Newspaper ads','TV ads','Hoardings','Social'].map(t => <span key={t}>{t}</span>)}</div>
           </div></div>
         </div>
+        <div style={{marginTop:26}}><a className="btn" href="https://drive.google.com/drive/folders/1yYnsy01--KET6TybK1a1zKqZ3tM5W8T8" target="_blank" rel="noopener">View full portfolio on Google Drive <i><I n="arrow"/></i></a></div>
         <div className="edu">
           <div><strong>BCA, Cyber Security</strong><small>Currently pursuing</small></div>
           <div><strong>Higher Secondary Certificate</strong><small>Tamil Nadu State Board · 2021–2022</small></div>
@@ -416,7 +417,7 @@ function App() {
         </div>
         <div className="cvrow" style={{marginTop:24}}><a className="btn" href="Sanjeeth_Kumar_CV.pdf" target="_blank" rel="noopener">Download my CV (PDF) <i><I n="arrow"/></i></a></div>
         {copied === 'fail' && <p className="fine">Copy isn't allowed here. Select the text above instead.</p>}
-        <div className="fine"><span>© 2026 Sanjeeth Kumar</span><span>Full portfolio of creatives and videos available on request.</span></div>
+        <div className="fine"><span>© 2026 Sanjeeth Kumar</span><span>Full portfolio of creatives and videos: <a href="https://drive.google.com/drive/folders/1yYnsy01--KET6TybK1a1zKqZ3tM5W8T8" target="_blank" rel="noopener">Google Drive</a></span></div>
       </div></footer>
     </>
   );
