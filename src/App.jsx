@@ -275,9 +275,9 @@ function App() {
 
       <header className="hero" id="home">
         <div className="head">
-          <span className="pill"><span><I n="award"/></span>Digital & growth marketer</span>
+          <span className="pill"><span><I n="award"/></span>GTM Lead · Growth Marketer</span>
           <h1>I'm <span className="g">Sanjeeth Kumar</span></h1>
-          <p className="sub">Digital marketing specialist based in Bengaluru, India</p>
+          <p className="sub">Go-to-market & lead generation specialist based in Bengaluru, India</p>
           <a className="badge" href="#contact" aria-label="Hire me">
             <svg viewBox="0 0 120 120"><defs><path id="cir" d="M60 60m-46 0a46 46 0 1 1 92 0a46 46 0 1 1-92 0"/></defs>
               <circle cx="60" cy="60" r="58" fill="#17140f"/>
