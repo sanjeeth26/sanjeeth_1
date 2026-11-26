@@ -33,6 +33,7 @@ const P = {
   funnel: <><path d="M3 4h18l-7 8v6l-4 2v-8z"/></>,
   cal: <><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></>,
   cloud: <><path d="M17.5 19a4.5 4.5 0 0 0 0-9 6 6 0 0 0-11.6 1.5A4 4 0 0 0 6 19z"/></>,
+  rocket: <><path d="M4.5 16.5c-1.5 1.3-2 5-2 5s3.7-.5 5-2c.7-.8.7-2.1-.1-2.9a2.2 2.2 0 0 0-2.9-.1z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.9A12.9 12.9 0 0 1 22 2c0 2.7-.8 7.5-6 11a22.4 22.4 0 0 1-4 2z"/><path d="M9 12H4s.6-3 2-4c1.6-1.1 5 0 5 0M12 15v5s3-.6 4-2c1.1-1.6 0-5 0-5"/></>,
   arrow: <><path d="M7 17L17 7M8 7h9v9"/></>,
   star: <><path d="M12 2l2.2 7.8L22 12l-7.8 2.2L12 22l-2.2-7.8L2 12l7.8-2.2z" fill="currentColor" stroke="none"/></>,
   award: <><circle cx="12" cy="9" r="6"/><path d="M8.5 14L7 22l5-3 5 3-1.5-8"/></>,
@@ -44,16 +45,95 @@ const I = ({ n }) => <svg className="ic" viewBox="0 0 24 24" fill="none" stroke=
 const LOGO = { onespace:'img/onespace.png', stepsstone:'img/stepsstone.png', autowelkin:'img/autowelkin.png', avg:'img/avg.png', ts:'img/ts.png' };
 const LBG = id => id === 'ts' ? '#000' : '#fff';
 
-const TICKER = ['Meta Ads','Google Ads','Lead Generation','Performance Marketing','Print & TV','SEO','Social Media','ATL & BTL','Media Planning','Analytics'];
+const TICKER = ['Branding','Brand Reach','Go-to-Market','Meta Ads','Google Ads','Lead Generation','Performance Marketing','Print & TV','SEO','Social Media','ATL & BTL','Media Planning','Analytics'];
 
 const SERVICES = [
-  { t:'Performance marketing', tags:['Meta Ads','Google Ads','Lead generation','Customer acquisition'], d:'Planning and running Meta and Google Ads campaigns built around lead generation and promotional goals.' },
+  { t:'Branding & brand strategy', tags:['Brand positioning','Visual identity','Messaging','Brand guidelines','Creative templates'], d:'Defining what a brand stands for and how it looks and sounds, then keeping it consistent across ads, print, social and on-ground.' },
+  { t:'Brand reach & awareness', tags:['Reach campaigns','Video views','Print & TV','Hoardings','Events'], d:'Putting the brand in front of the right audience at scale, mixing Meta and YouTube reach with newspapers, TV, outdoor and launch events.' },
+  { t:'Go-to-market (GTM) strategy', tags:['Market research','Audience segments','Offer & pricing','Channel mix','Launch plan'], d:'Planning how a product or project reaches its market: who to target, what to offer, which channels to use and how to sequence the launch.' },
+  { t:'Performance marketing & lead generation', tags:['Meta Lead Ads','Google Ads','LinkedIn Ads','Landing pages','Cost per lead'], d:'Running Meta, Google and LinkedIn campaigns built to bring in qualified leads, with tracking set up from click to enquiry.' },
   { t:'Integrated campaigns · ATL & BTL', tags:['Newspaper ads','Television','Hoardings','Media planning','Vendor negotiation'], d:'Campaigns across digital, print and TV: placements planned, vendor quotations compared and negotiated, specs and creatives delivered.' },
   { t:'Social media marketing', tags:['Content calendars','Reels','Engagement','Analytics & reporting','Pinterest'], d:'Content planning, scheduling and short-form video, with engagement and reporting that feed the next calendar.' },
   { t:'Graphic design & branding', tags:['Ad creatives','Posters','Brand identity','Social creatives','Figma'], d:'Creatives, posters and campaign assets that keep a brand consistent across every touchpoint.' },
   { t:'Video production & editing', tags:['Promo videos','Motion graphics','Colour correction','Audio mixing','Voice-over'], d:'Promotional and social videos for Instagram and YouTube, from edit and motion to colour and sound.' },
   { t:'Marketing strategy & consulting', tags:['Market research','Competitor analysis','Pricing & quotations','Positioning','SEO'], d:'Evaluating business requirements and recommending the marketing approach, pricing and positioning to match.' },
 ];
+
+const FLOW = [
+  { k:'Branding', i:'spark', line:'Build a brand people remember',
+    what:'Start with the foundation: what the brand stands for, who it speaks to and how it should look and sound everywhere.',
+    do:['Brand positioning and key message','Logo, colours, type and visual system','Tone of voice for ads and social','Brand guidelines and creative templates'],
+    out:['Positioning statement','Visual identity','Ad & social templates','Brand guidelines'],
+    kpi:['Brand consistency across channels','Brand recall','Engagement on brand content'],
+    work:'Avanga Paathu Panga: end-to-end branding across newspaper, TV, hoardings, posters and social.' },
+  { k:'Brand reach', i:'mega', line:'Get seen by the right people at scale',
+    what:'Push the brand out wide with a mix of digital reach and traditional media, so the market knows the name before you ask for a lead.',
+    do:['Meta and YouTube reach and video-view campaigns','Newspaper ads and TV spots','Hoardings, outdoor and BTL activity','Reels, social content and events'],
+    out:['Media plan','Reach campaigns','Print & TV ads','Event promotion'],
+    kpi:['Reach and impressions','Frequency and CPM','Video views','Share of voice'],
+    work:'Aalam Senior Living: The Times of India, Dinamalar and Daily Thanthi placements and TV with Shankara TV.' },
+  { k:'Go-to-market', i:'rocket', line:'Plan how the offer reaches its market',
+    what:'Turn awareness into a launch plan: the right audience, the right offer, the right channels in the right order.',
+    do:['Market and competitor analysis','Audience segments and buyer profiles','Offer, pricing and quotation planning','Channel mix, budget split and launch calendar'],
+    out:['GTM plan','Audience segments','Offer & pricing','Launch calendar'],
+    kpi:['Launch on schedule','Budget split by channel','Target cost per lead'],
+    work:'Srinivasa Palms Phase 2: Mid-Launch Special Offer Event, 13–15 March 2026, Fairfield by Marriott, Coimbatore.' },
+  { k:'Lead generation', i:'funnel', line:'Turn attention into enquiries',
+    what:'Run the campaigns that capture intent and bring in enquiries, with tracking in place from the first click.',
+    do:['Meta Lead Ads and instant forms','Google Search and YouTube campaigns','LinkedIn Ads for B2B leads','Landing pages, forms and Google Tag Manager tracking'],
+    out:['Lead campaigns','Landing pages & forms','Conversion tracking','Lead reports'],
+    kpi:['Leads and cost per lead (CPL)','Click-through rate','Form conversion rate','Lead quality'],
+    work:'Aalam Senior Living: Meta Ads and Google Ads for lead generation and promotions.' },
+  { k:'Conversion', i:'users', line:'Nurture leads into customers',
+    what:'Follow every lead up fast and consistently until it becomes a visit, a call or a sale.',
+    do:['CRM setup in HubSpot or Salesforce','WhatsApp and email follow-up sequences','Lead scoring and sales handoff','Retargeting and reporting dashboards'],
+    out:['CRM pipeline','Follow-up flows','Retargeting','Looker Studio reports'],
+    kpi:['Lead-to-visit rate','Lead-to-sale rate','Cost per acquisition','Return on ad spend'],
+    work:'Client coordination and campaign execution through to the launch event.' },
+];
+
+function Flow() {
+  const [i, setI] = useState(0);
+  const [auto, setAuto] = useState(!RM);
+  useEffect(() => {
+    if (!auto) return;
+    const t = setInterval(() => setI(v => (v + 1) % FLOW.length), 6000);
+    return () => clearInterval(t);
+  }, [auto]);
+  const f = FLOW[i];
+  const pick = n => { setI(n); setAuto(false); };
+  return (
+    <section className="band flow dark" id="flow"><div className="wrap">
+      <div className="sh"><div><Eyebrow>My growth flow</Eyebrow><h2>From brand to <span className="g">booked leads</span></h2></div>
+        <p className="fl-lede">Every campaign I run follows the same five steps. Pick one to see what I do there.</p></div>
+      <div className="steps" style={{'--p': (i / (FLOW.length - 1) * 100) + '%'}}>
+        <div className="track"><span className="fill"/><span className="dot"/></div>
+        {FLOW.map((s, n) => (
+          <button key={s.k} className={'step' + (n === i ? ' on' : '') + (n < i ? ' done' : '')} onClick={() => pick(n)} aria-pressed={n === i}>
+            <span className="node"><I n={s.i}/></span>
+            <b>{s.k}</b><small>{s.line}</small>
+          </button>
+        ))}
+      </div>
+      <div className="panel" key={f.k}>
+        <div className="pc">
+          <h3><span className="g">{String(i + 1).padStart(2, '0')}</span> {f.k}</h3>
+          <p>{f.what}</p>
+          <ul>{f.do.map(d => <li key={d}><I n="arrow"/>{d}</li>)}</ul>
+        </div>
+        <div className="pc">
+          <div className="pl">Deliverables</div>
+          <div className="chips2">{f.out.map(o => <span key={o}>{o}</span>)}</div>
+          <div className="pl" style={{marginTop:18}}>What I track</div>
+          <ul className="kpi">{f.kpi.map(k => <li key={k}><I n="chart"/>{k}</li>)}</ul>
+        </div>
+        <div className="pc work"><div className="pl">From my work</div><p>{f.work}</p>
+          <div className="nav2"><button onClick={() => pick((i + FLOW.length - 1) % FLOW.length)} aria-label="Previous step">←</button><button onClick={() => pick((i + 1) % FLOW.length)} aria-label="Next step">→</button></div>
+        </div>
+      </div>
+    </div></section>
+  );
+}
 
 const TOOLS = [
   { n:'Meta Ads Manager', c:'Paid social', i:'mega' }, { n:'Google Ads', c:'Paid search', i:'target' }, { n:'Meta Lead Ads', c:'Instant forms', i:'form' },
@@ -189,7 +269,7 @@ function App() {
     <>
       <div className="navw"><nav>
         <a className="brand" href="#home"><img src="img/avatar.webp" alt=""/>Sanjeeth.</a>
-        <div className="links"><a href="#home">Home</a><a href="#services">Services</a><a href="#toolkit">Toolkit</a><a href="#about">About</a><a href="#experience">Experience</a><a href="#campaigns">Campaigns</a></div>
+        <div className="links"><a href="#home">Home</a><a href="#services">Services</a><a href="#flow">Growth flow</a><a href="#toolkit">Toolkit</a><a href="#about">About</a><a href="#experience">Experience</a><a href="#campaigns">Campaigns</a></div>
         <a className="cta" href="#contact">Let's talk <I n="arrow"/></a>
       </nav></div>
 
@@ -249,6 +329,8 @@ function App() {
           </div>
         ))}</div>
       </div></section>
+
+      <Flow/>
 
       <section className="band tools" id="toolkit"><div className="wrap">
         <Eyebrow>My toolkit</Eyebrow><h2>My marketing & <span className="g">lead-gen stack</span></h2>
