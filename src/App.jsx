@@ -269,7 +269,7 @@ function App() {
     <>
       <div className="navw"><nav>
         <a className="brand" href="#home"><img src="img/avatar.webp" alt=""/>Sanjeeth.</a>
-        <div className="links"><a href="#home">Home</a><a href="#services">Services</a><a href="#flow">Growth flow</a><a href="#toolkit">Toolkit</a><a href="#about">About</a><a href="#experience">Experience</a><a href="#campaigns">Campaigns</a><a href="https://drive.google.com/drive/folders/1yYnsy01--KET6TybK1a1zKqZ3tM5W8T8" target="_blank" rel="noopener">Portfolio</a><a href="Sanjeeth_Kumar_CV.pdf" target="_blank" rel="noopener">Resume</a></div>
+        <div className="links"><a href="#home">Home</a><a href="#services">Services</a><a href="#flow">Growth flow</a><a href="#toolkit">Toolkit</a><a href="#about">About</a><a href="#experience">Experience</a><a href="#campaigns">Campaigns</a><a href="https://drive.google.com/drive/folders/1yYnsy01--KET6TybK1a1zKqZ3tM5W8T8" target="_blank" rel="noopener">Portfolio</a><a href="sanjeethkumar%20-%20CV.pdf" target="_blank" rel="noopener">Resume</a></div>
         <a className="cta" href="#contact">Let's talk <I n="arrow"/></a>
       </nav></div>
 
@@ -363,7 +363,7 @@ function App() {
           <p>A digital and creative marketer with 2+ years across performance advertising, integrated campaigns, branding, content, graphic design, video production and lead generation.</p>
           <p>I plan and run Meta and Google Ads, newspaper and TV campaigns, ATL and BTL activity, SEO and social media, and I make the creatives that run in them. I've coordinated vendors, negotiated quotations, managed media placements and worked directly with clients. Today I edit video at AVG Primetech and consult on marketing for TS Techy.</p>
           <div className="nums"><div><b>2+ yrs</b><span>marketing & creative</span></div><div><b>5</b><span>brands worked with</span></div><div><b>3</b><span>newspapers placed</span></div></div>
-          <div className="sig"><a className="btn" href="Sanjeeth_Kumar_CV.pdf" target="_blank" rel="noopener">Download CV <i><I n="arrow"/></i></a><a className="btn dk" href="#contact">Let's talk <i><I n="arrow"/></i></a><em>Sanjeeth</em></div>
+          <div className="sig"><a className="btn" href="sanjeethkumar%20-%20CV.pdf" target="_blank" rel="noopener">Download CV <i><I n="arrow"/></i></a><a className="btn dk" href="#contact">Let's talk <i><I n="arrow"/></i></a><em>Sanjeeth</em></div>
         </div>
       </div></section>
 
@@ -415,7 +415,7 @@ function App() {
           <div><span className="ci"><I n="link"/></span><small>LinkedIn</small><a href="https://www.linkedin.com/in/sanjeeth-kumar-s-n" target="_blank" rel="noopener">in/sanjeeth-kumar-s-n</a></div>
           <div><span className="ci"><I n="map"/></span><small>Based in</small><span>Bengaluru, Karnataka, India</span></div>
         </div>
-        <div className="cvrow" style={{marginTop:24}}><a className="btn" href="Sanjeeth_Kumar_CV.pdf" target="_blank" rel="noopener">Download my CV (PDF) <i><I n="arrow"/></i></a></div>
+        <div className="cvrow" style={{marginTop:24}}><a className="btn" href="sanjeethkumar%20-%20CV.pdf" target="_blank" rel="noopener">Download my CV (PDF) <i><I n="arrow"/></i></a></div>
         {copied === 'fail' && <p className="fine">Copy isn't allowed here. Select the text above instead.</p>}
         <div className="fine"><span>© 2026 Sanjeeth Kumar</span><span>Full portfolio of creatives and videos: <a href="https://drive.google.com/drive/folders/1yYnsy01--KET6TybK1a1zKqZ3tM5W8T8" target="_blank" rel="noopener">Google Drive</a></span></div>
       </div></footer>
