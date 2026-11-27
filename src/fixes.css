@@ -1,3 +1,6 @@
 /* ---- Toolkit fixes: brand colours on logos, room for the hover lift ---- */
 .trow{padding:12px 0 18px;margin-top:4px}
 .trow .run svg{color:inherit;width:1em;height:1em}
+.otw{display:inline-flex;align-items:center;gap:9px;margin:14px 0 0;font-size:14px;font-weight:600;padding:6px 14px;border-radius:999px;background:var(--card);border:1px solid var(--line)}
+.otw i{width:9px;height:9px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 4px rgba(34,197,94,.2);animation:otw 2s ease-in-out infinite}
+@keyframes otw{50%{box-shadow:0 0 0 8px rgba(34,197,94,0)}}
