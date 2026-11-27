@@ -91,10 +91,20 @@ export function RecruiterCard() {
 export function StickyBar() {
   const [on, setOn] = useState(false);
   useEffect(() => {
+    // Phones: show the bar only while scrolling up, so it never sits on top of what someone is reading.
+    // Hidden while the "Work with me" section (which has the same buttons) or the contact footer is on screen.
+    let last = scrollY;
     const f = () => {
-      const foot = document.getElementById('contact');
-      const nearFoot = foot && foot.getBoundingClientRect().top < innerHeight;
-      setOn(scrollY > innerHeight * 0.9 && !nearFoot);
+      const y = scrollY, up = y < last - 4, down = y > last + 4;
+      last = y;
+      const vis = el => { const r = el && el.getBoundingClientRect(); return r && r.top < innerHeight && r.bottom > 0; };
+      const busy = vis(document.getElementById('contact')) || vis(document.getElementById('recruiter'));
+      const phone = innerWidth < 700;
+      setOn(prev => {
+        if (y < innerHeight * 0.9 || busy) return false;
+        if (!phone) return true;
+        return up ? true : down ? false : prev;
+      });
     };
     f(); addEventListener('scroll', f, { passive: true });
     return () => removeEventListener('scroll', f);
