@@ -281,7 +281,7 @@ const GROUPS = [
 const COMP = ['CRM management','Marketing automation','B2B lead generation','Video advertising','Dashboard reporting','Audience targeting & retargeting','Funnel strategy','A/B testing','Conversion tracking','Lead nurturing & follow-up','Budget & bid management','Campaign reporting & ROI','Landing page optimisation','Digital marketing strategy','Performance marketing','Meta Ads & Google Ads','Search engine optimisation','Lead generation & customer acquisition','Social media marketing','ATL & BTL marketing','Integrated marketing campaigns','Marketing strategy & planning','Market & competitor analysis','Brand positioning & branding','Content marketing & copywriting','Creative direction & campaign design','Video production & editing','Advertising media planning','Vendor management & negotiation','Client relationship management','Marketing consultation','Business development support','Social media analytics & reporting'];
 
 const JOBS = [
-  { id:'avg', now:true, co:'AVG Primetech', role:'Video Editor · Creative & Marketing Support', when:'Jul 2026 – Present', where:'Bangalore, Karnataka',
+  { id:'avg', now:true, co:'AVG Primetech', role:'Video Editor · Creative & Marketing Support', when:'Jul 2026 – Present', where:'Bengaluru, Karnataka',
     pts:['Edit promotional, marketing and social media videos for digital platforms.','Produce engaging video content with transitions, motion graphics and colour correction.','Handle audio editing and mixing to improve content quality.','Create graphic design assets and promotional materials.','Develop video content for Instagram, YouTube and other digital channels.','Support ongoing creative and digital marketing initiatives.','Create AI-assisted reels: scripts and copy, ChatGPT and Claude for content and prompts, AI Flow footage, edited in Premiere Pro and animated in After Effects.'] },
   { id:'ts', co:'TS Techy', role:'Marketing & Business Consultant · Project-based', when:'May 2025 – Present', where:'Project-based',
     pts:['Provide project-based consulting for digital marketing, marketing strategy and business requirements.','Support digital marketing service planning and marketing solution recommendations.','Assist with marketing service pricing, quotations and commercial planning.','Evaluate business requirements and suggest relevant marketing approaches.','Support marketing positioning, promotional planning and business development.','Coordinate marketing discussions and consult on business growth opportunities.'] },
@@ -449,6 +449,7 @@ function App() {
           <span className="pill"><span><I n="award"/></span>GTM Lead · Growth Marketer</span>
           <h1>I'm <span className="g">Sanjeeth Kumar</span></h1>
           <p className="sub">Go-to-market & lead generation specialist based in Bengaluru, India</p>
+          <p className="otw"><i/>Open to GTM & growth marketing roles</p>
           <a className="badge" href="#contact" aria-label="Hire me">
             <svg viewBox="0 0 120 120"><defs><path id="cir" d="M60 60m-46 0a46 46 0 1 1 92 0a46 46 0 1 1-92 0"/></defs>
               <circle cx="60" cy="60" r="58" fill="#17140f"/>
