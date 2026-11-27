@@ -25,10 +25,11 @@ export function initTracking() {
     if (!a) return;
     const href = a.getAttribute('href') || '';
     const where = a.closest('section, header, footer, nav, .rbar')?.id || a.closest('.rbar') && 'sticky-bar' || 'page';
+    const intent = a.dataset.intent || 'general';
     if (/\.pdf$/i.test(href)) track('cv_download', { where });
-    else if (href.startsWith('mailto:')) track('contact_click', { method: 'email', where });
+    else if (href.startsWith('mailto:')) track('contact_click', { method: 'email', where, intent });
     else if (href.startsWith('tel:')) track('contact_click', { method: 'phone', where });
-    else if (href.includes('wa.me/')) track('contact_click', { method: 'whatsapp', where });
+    else if (href.includes('wa.me/')) track('contact_click', { method: 'whatsapp', where, intent });
     else if (href.includes('linkedin.com')) track('contact_click', { method: 'linkedin', where });
     else if (href.includes('drive.google.com')) track('drive_open', { where });
     else if (a.classList.contains('cr')) track('creative_open', { name: a.getAttribute('aria-label') || '' });
