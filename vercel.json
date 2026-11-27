@@ -2,6 +2,7 @@
   "rewrites": [
     { "source": "/media/:file", "destination": "/public/media/:file" },
     { "source": "/img/:file", "destination": "/public/img/:file" },
-    { "source": "/creatives/:file", "destination": "/public/creatives/:file" }
+    { "source": "/creatives/:file", "destination": "/public/creatives/:file" },
+    { "source": "/ooh/:file", "destination": "/public/ooh/:file" }
   ]
 }
