@@ -265,4 +265,42 @@ nav{max-width:1180px;margin:10px auto 0;background:var(--dk);color:#fff;border-r
 .lb .pv{left:16px;top:50%;margin-top:-24px}
 .lb .nx{right:16px;top:50%;margin-top:-24px}
 @media(max-width:600px){.lb{padding:16px 12px 84px}.lb .pv,.lb .nx{top:auto;bottom:18px;margin:0}.lb .pv{left:calc(50% - 60px)}.lb .nx{right:calc(50% - 60px)}.masonry{columns:2 150px;column-gap:12px}.cr{margin-bottom:12px}.cr .cap b{font-size:14px}}
-@media(prefers-reduced-motion:reduce){*,*::before{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+/* ---- polish pass: buttons, motion, navigation ---- */
+.btn,.cta,.pillbtn{position:relative;overflow:hidden;isolation:isolate;transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s,background-size .45s cubic-bezier(.2,.8,.2,1),color .3s,border-color .3s;will-change:transform}
+.btn::before,.cta::before,.pillbtn::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(110deg,transparent 25%,rgba(255,255,255,.6) 50%,transparent 75%);transform:translateX(-130%);transition:transform .8s cubic-bezier(.2,.8,.2,1);pointer-events:none}
+.btn:hover::before,.cta:hover::before,.pillbtn:hover::before{transform:translateX(130%)}
+.btn{background:linear-gradient(180deg,#f2bd3d,#e3a51a);box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 8px 20px -12px rgba(227,165,26,.9)}
+.btn:hover{transform:translateY(-3px);box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 16px 32px -14px rgba(227,165,26,.95)}
+.btn:active,.cta:active,.pillbtn:active{transform:translateY(0) scale(.96)!important;transition-duration:.1s}
+.btn i{transition:transform .45s cubic-bezier(.2,.8,.2,1),background .3s}
+.btn:hover i{transform:rotate(45deg) scale(1.1)}
+.btn.w{background:linear-gradient(var(--dk),var(--dk)) no-repeat left/0% 100%,var(--card);box-shadow:none}
+.btn.w:hover{background-size:100% 100%,auto;color:#fff;box-shadow:0 14px 28px -16px rgba(0,0,0,.6)}
+.btn.dk{background:linear-gradient(var(--gold),var(--gold)) no-repeat left/0% 100%,transparent;box-shadow:none}
+.btn.dk:hover{background-size:100% 100%,auto;color:var(--dk)}
+.btn.dk:hover i{background:var(--dk);color:var(--gold)}
+.cta{background:linear-gradient(var(--gold),var(--gold)) no-repeat left/0% 100%,#fff}
+.cta:hover{background-size:100% 100%,auto;transform:translateY(-1px)}
+.cta svg{transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.cta:hover svg{transform:rotate(45deg)}
+.pillbtn:hover{transform:translateY(-2px);box-shadow:0 12px 24px -12px rgba(227,165,26,.9)}
+.pillbtn i{transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.pillbtn:hover i{transform:rotate(45deg)}
+.copy{transition:background .3s,color .3s,transform .2s}
+.copy:hover{background:var(--gold);color:var(--dk)}
+.copy:active{transform:scale(.95)}
+.soc a{transition:transform .3s cubic-bezier(.2,.8,.2,1),background .3s,box-shadow .3s}
+.soc a:hover{box-shadow:0 10px 20px -10px rgba(227,165,26,.9)}
+.links a{transition:color .25s,background .25s}
+.links a.act{color:var(--gold);background:rgba(227,165,26,.14)}
+.nav2 button,.lb button,.filters button{transition:background .25s,color .25s,border-color .25s,transform .2s}
+.nav2 button:active,.lb button:active,.filters button:active{transform:scale(.92)}
+.prog{position:fixed;left:0;top:0;height:3px;width:100%;z-index:70;background:linear-gradient(90deg,#c88a0c,var(--gold2));transform-origin:0 50%;transform:scaleX(0);pointer-events:none}
+.totop{position:fixed;right:18px;bottom:18px;z-index:40;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:var(--dk);color:var(--gold);border:1px solid var(--gold);font-size:22px;box-shadow:0 12px 26px -12px rgba(0,0,0,.6);opacity:0;transform:translateY(16px) scale(.9);pointer-events:none;transition:opacity .35s,transform .35s cubic-bezier(.2,.8,.2,1),background .25s,color .25s}
+.totop.on{opacity:1;transform:none;pointer-events:auto}
+.totop svg{transform:rotate(-45deg)}
+.totop:hover{background:var(--gold);color:var(--dk)}
+.totop:focus-visible{outline:3px solid var(--gold2);outline-offset:3px}
+.rv{transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1)}
+.rv:not(.in){opacity:0;transform:translateY(28px)}
+@media(prefers-reduced-motion:reduce){*,*::before{animation:none!important;transition:none!important}html{scroll-behavior:auto}.rv{opacity:1!important;transform:none!important}}

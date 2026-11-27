@@ -325,9 +325,64 @@ const Eyebrow = ({ children }) => <div className="eyebrow"><i><b/><b/></i>{child
 function App() {
   const [open, setOpen] = useState(0);
   const [copied, setCopied] = useState('');
+  const [top, setTop] = useState(false);
+  const prog = useRef(null);
   const copy = async (v, k) => { try { await navigator.clipboard.writeText(v); setCopied(k); setTimeout(() => setCopied(''), 1800); } catch { setCopied('fail'); } };
+
+  // Scroll progress bar + back-to-top button
+  useEffect(() => {
+    const on = () => {
+      const h = document.documentElement, max = h.scrollHeight - innerHeight;
+      if (prog.current) prog.current.style.transform = `scaleX(${max > 0 ? scrollY / max : 0})`;
+      setTop(scrollY > 700);
+    };
+    on(); addEventListener('scroll', on, { passive: true });
+    return () => removeEventListener('scroll', on);
+  }, []);
+
+  // Highlight the menu link for the section on screen
+  useEffect(() => {
+    if (!('IntersectionObserver' in window)) return;
+    const links = [...document.querySelectorAll('.links a[href^="#"]')];
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting) return;
+      links.forEach(a => a.classList.toggle('act', a.getAttribute('href') === '#' + e.target.id));
+    }), { rootMargin: '-45% 0px -50% 0px' });
+    links.forEach(a => { const s = document.querySelector(a.getAttribute('href')); if (s) io.observe(s); });
+    return () => io.disconnect();
+  }, []);
+
+  // Fade-up reveal for blocks below the first screen
+  useEffect(() => {
+    if (RM || !('IntersectionObserver' in window)) return;
+    const els = [...document.querySelectorAll('.band .sh, .svc, .grp, .job, .cc, .edu > div, .contact > div, .steps, .panel, .crstats, .filters, .nums > div, .frame, .comp')]
+      .filter(el => el.getBoundingClientRect().top > innerHeight);
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    }), { rootMargin: '0px 0px -8% 0px' });
+    els.forEach((el, i) => { el.classList.add('rv'); el.style.transitionDelay = (i % 4) * 0.06 + 's'; io.observe(el); });
+    return () => io.disconnect();
+  }, []);
+
+  // Magnetic pull on the main buttons (mouse only)
+  useEffect(() => {
+    if (RM || !FINE) return;
+    const move = e => {
+      const b = e.target.closest && e.target.closest('.btn, .cta, .pillbtn');
+      document.querySelectorAll('.mag').forEach(x => { if (x !== b) { x.classList.remove('mag'); x.style.translate = ''; } });
+      if (!b) return;
+      const r = b.getBoundingClientRect();
+      b.classList.add('mag');
+      b.style.translate = `${((e.clientX - r.left) / r.width - 0.5) * 10}px ${((e.clientY - r.top) / r.height - 0.5) * 8}px`;
+    };
+    addEventListener('pointermove', move, { passive: true });
+    return () => removeEventListener('pointermove', move);
+  }, []);
+
   return (
     <>
+      <div className="prog" ref={prog} aria-hidden="true"/>
+      <a className={'totop' + (top ? ' on' : '')} href="#home" aria-label="Back to top"><I n="arrow"/></a>
       <div className="navw"><nav>
         <a className="brand" href="#home"><img src="img/avatar.webp" alt=""/>Sanjeeth.</a>
         <div className="links"><a href="#home">Home</a><a href="#services">Services</a><a href="#flow">Growth flow</a><a href="#toolkit">Toolkit</a><a href="#about">About</a><a href="#experience">Experience</a><a href="#campaigns">Campaigns</a><a href="#creatives">Creatives</a><a href="https://drive.google.com/drive/folders/1yYnsy01--KET6TybK1a1zKqZ3tM5W8T8" target="_blank" rel="noopener">Portfolio</a><a href="sanjeethkumar%20-%20CV.pdf" target="_blank" rel="noopener">Resume</a></div>
