@@ -149,6 +149,7 @@ const CREATIVES = [
   { f:'c10', c:'Care series', t:'Care you can trust', fmt:'Feed 1:1' },
   { f:'c11', c:'Care series', t:'Growing older, growing closer', fmt:'Feed 1:1' },
   { f:'c12', c:'Care series', t:'Live close, not crowded', fmt:'Feed 1:1' },
+  { f:'c13', c:'Google Ads display', t:'Senior Living @Pollachi, ₹37L onwards', fmt:'Display 16:9' },
 ];
 
 function Creatives() {
@@ -172,7 +173,7 @@ function Creatives() {
     <section className="band dark" id="creatives" style={{borderTop:0}}><div className="wrap">
       <div className="sh"><div><Eyebrow>Ad creatives</Eyebrow><h2>Creatives built for <span className="g">Meta & Google Ads</span></h2></div>
         <p className="fl-lede">Feed and story creatives I designed for Aalam Senior Living's Meta and Google Ads lead-generation campaigns: Tamil hooks, offer-led ads and a premium care series.</p></div>
-      <div className="crstats"><span><b>{CREATIVES.length}</b> creatives</span><span><b>{cats.length - 1}</b> campaigns</span><span><b>Meta</b> &amp; <b>Google Ads</b></span><span><b>Feed 1:1</b> &amp; <b>Story 9:16</b></span></div>
+      <div className="crstats"><span><b>{CREATIVES.length}</b> creatives</span><span><b>{cats.length - 1}</b> campaigns</span><span><b>Meta</b> &amp; <b>Google Ads</b></span><span><b>Feed 1:1</b>, <b>Story 9:16</b> &amp; <b>Display 16:9</b></span></div>
       <div className="filters" role="group" aria-label="Filter by campaign">{cats.map(c => (
         <button key={c} className={cat === c ? 'on' : ''} aria-pressed={cat === c} onClick={() => { setCat(c); setOpen(-1); }}>
           {c}<b>{c === 'All' ? CREATIVES.length : CREATIVES.filter(x => x.c === c).length}</b>
@@ -208,16 +209,66 @@ const TOOLS = [
   { n:'Google Sheets', c:'Lead tracking', b:'gsheets' }, { n:'Klaviyo', c:'Email flows', i:'mail', col:'#232426' }, { n:'Pinterest', c:'Social', b:'pinterest' },
   { n:'Photoshop', c:'Ad creatives', b:'ps' }, { n:'Illustrator', c:'Ad creatives', b:'ai' }, { n:'Premiere Pro', c:'Video ads', b:'pr' },
   { n:'After Effects', c:'Motion ads', b:'ae' }, { n:'CapCut', c:'Reels', i:'cut', col:'#111111' },
+  { n:'ChatGPT', c:'Content & copy', i:'chat', col:'#10A37F' }, { n:'Claude', c:'Prompt writing', b:'claude' }, { n:'AI Flow', c:'AI video', i:'spark', col:'#7C5CFF' },
 ];
-const BRX = [[/Meta Lead/,'facebook'],[/Creator Studio|Instagram/,'instagram'],[/Meta/,'meta'],[/Google Ads|Keyword Planner/,'gads'],[/LinkedIn/,'linkedin'],[/YouTube/,'youtube'],[/Google Forms|Typeform/,'gforms'],[/WhatsApp/,'whatsapp'],[/Analytics 4/,'ga'],[/Tag Manager/,'gtm'],[/Looker/,'looker'],[/Semrush/,'semrush'],[/Search Console/,'gsc'],[/Business Profile/,'gmaps'],[/HubSpot/,'hubspot'],[/Salesforce/,'salesforce'],[/Photoshop/,'ps'],[/Illustrator/,'ai'],[/Premiere/,'pr'],[/After Effects/,'ae']];
+const BRX = [[/Meta Lead/,'facebook'],[/Creator Studio|Instagram/,'instagram'],[/Meta/,'meta'],[/Google Ads|Keyword Planner/,'gads'],[/LinkedIn/,'linkedin'],[/YouTube/,'youtube'],[/Google Forms|Typeform/,'gforms'],[/WhatsApp/,'whatsapp'],[/Analytics 4/,'ga'],[/Tag Manager/,'gtm'],[/Looker/,'looker'],[/Semrush/,'semrush'],[/Search Console/,'gsc'],[/Business Profile/,'gmaps'],[/HubSpot/,'hubspot'],[/Salesforce/,'salesforce'],[/Photoshop/,'ps'],[/Illustrator/,'ai'],[/Premiere/,'pr'],[/After Effects/,'ae'],[/Claude/,'claude']];
 const brandOf = t => { const m = BRX.find(([r]) => r.test(t)); return m ? m[1] : null; };
 const Logo = ({ b, i }) => BR[b] ? <span className="blw" dangerouslySetInnerHTML={{ __html: BR[b].s }}/> : <I n={i}/>;
+Object.assign(BR, {"claude":{"c":"#D97757","s":"<svg class=\"bl\" stroke=\"currentColor\" fill=\"currentColor\" stroke-width=\"0\" role=\"img\" viewBox=\"0 0 24 24\" aria-hidden=\"true\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z\"></path></svg>"}});
+const AIVIDS = [
+  { f:'avg-web3', t:'Web3, explained simply', d:'1:05', tags:['Explainer','Web3'], p:'An AI presenter breaks down payments, decentralized networks and crypto wallets for everyday viewers.' },
+  { f:'avg-forex', t:'Learn forex: the basics', d:'0:44', tags:['Education','Finance'], p:'A short lesson on foreign exchange and what moves it: economic news, interest rates and market conditions.' },
+  { f:'avg-website', t:'Why your business needs a website', d:'0:55', tags:['Service promo','Web'], p:'A promo for website services with an AI host, kinetic captions and brand moments.' },
+  { f:'avg-marketing', t:'Paid vs organic marketing', d:'0:33', tags:['Marketing','Education'], p:'How paid ads reach the right audience and organic content grows it, told in 33 seconds.' },
+];
+const AIFLOW = [
+  { k:'Script & copy', t:'Content research and drafts, then the final script and copy written by me', tool:'ChatGPT', i:'chat', col:'#10A37F' },
+  { k:'Prompts', t:'Detailed shot and scene prompts for the AI video', tool:'Claude', b:'claude' },
+  { k:'References', t:'Mood boards for look, lighting and styling', tool:'Pinterest', b:'pinterest' },
+  { k:'AI video', t:'Presenter and scene footage generated from my prompts', tool:'AI Flow', i:'spark', col:'#7C5CFF' },
+  { k:'Edit', t:'Cuts, pacing, audio and captions', tool:'Premiere Pro', b:'pr' },
+  { k:'Motion', t:'Motion graphics and kinetic text', tool:'After Effects', b:'ae' },
+];
+const PlayTri = () => <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg>;
+function AiVideo({ v }) {
+  const r = useRef(null);
+  const [on, setOn] = useState(false);
+  const play = () => { setOn(true); r.current.play(); };
+  const onPlay = e => { setOn(true); document.querySelectorAll('.av video').forEach(x => { if (x !== e.target) x.pause(); }); };
+  return (
+    <div className="av">
+      <div className="phone">
+        <video ref={r} src={'media/' + v.f + '.mp4'} poster={'img/' + v.f + '.webp'} playsInline preload="none" controls={on} onPlay={onPlay} onEnded={() => setOn(false)} aria-label={v.t}/>
+        {!on && <button className="play" onClick={play} aria-label={'Play ' + v.t}><span><PlayTri/></span></button>}
+        {!on && <span className="len">Reel · {v.d}</span>}
+      </div>
+      <div className="avtx"><small>AVG Primetech · 9:16</small><h3>{v.t}</h3><p>{v.p}</p><div className="tgs">{v.tags.map(t => <span key={t}>{t}</span>)}</div></div>
+    </div>
+  );
+}
+function AiVideos() {
+  return (
+    <section className="band" id="aivideo"><div className="wrap">
+      <div className="sh"><div><Eyebrow>AI video content · AVG Primetech</Eyebrow><h2>Reels I made with <span className="g">AI + editing</span></h2></div>
+        <p className="lede2">Short-form videos I created for AVG Primetech. I wrote the scripts and copy, prompted the AI footage, then cut and animated every frame myself.</p></div>
+      <div className="avflow">{AIFLOW.map((s, n) => (
+        <div className="afs" key={s.k} style={{'--b': s.b ? BR[s.b].c : s.col}}>
+          <span className="afn">{String(n + 1).padStart(2, '0')}</span>
+          <span className="afi"><Logo b={s.b} i={s.i}/></span>
+          <b>{s.k}</b><small>{s.t}</small><em>{s.tool}</em>
+        </div>
+      ))}</div>
+      <div className="avgrid">{AIVIDS.map(v => <AiVideo key={v.f} v={v}/>)}</div>
+      <p className="role"><b>My role:</b> concept, script, copywriting, AI prompting, video generation, editing and motion graphics. Tools: ChatGPT, Claude, Pinterest, AI Flow, Premiere Pro and After Effects.</p>
+    </div></section>
+  );
+}
 const GROUPS = [
   { h:'Paid advertising', i:'mega', items:[['Meta Ads Manager','mega'],['Meta Business Suite','users'],['Google Ads','target'],['LinkedIn Ads','mega'],['YouTube Ads','play'],['Keyword Planner','search'],['Meta Pixel tracking','code']] },
   { h:'Lead generation', i:'funnel', items:[['Meta Lead Ads (instant forms)','form'],['Google Forms & Typeform','form'],['Landing pages','funnel'],['WhatsApp Business follow-up','chat'],['Klaviyo email flows','mail'],['Lead tracking & reporting','sheet']] },
   { h:'Analytics & SEO', i:'chart', items:[['Google Analytics 4','chart'],['Google Tag Manager','code'],['Looker Studio dashboards','chart'],['Semrush','search'],['Google Search Console','search'],['SEO','search'],['Social media analytics','chart'],['Google Business Profile','map']] },
   { h:'CRM & automation', i:'users', items:[['HubSpot CRM & workflows','users'],['Salesforce','cloud'],['Klaviyo email flows','mail'],['Lead pipeline management','funnel'],['Lead scoring & handoff','sheet']] },
-  { h:'Creative for ads', i:'brush', items:[['Adobe Photoshop','brush'],['Adobe Illustrator','pen'],['Adobe Premiere Pro','film'],['Adobe After Effects','spark'],['CapCut','cut'],['Meta Creator Studio','cal']] },
+  { h:'Creative for ads', i:'brush', items:[['Adobe Photoshop','brush'],['Adobe Illustrator','pen'],['Adobe Premiere Pro','film'],['Adobe After Effects','spark'],['CapCut','cut'],['Meta Creator Studio','cal'],['AI video with AI Flow','spark'],['Prompts with Claude','spark']] },
   { h:'Campaign strategy', i:'target', items:[['Audience targeting & retargeting','target'],['Funnel strategy (awareness to conversion)','funnel'],['Budget & bid management','chart'],['A/B testing ad creatives','layers'],['Campaign reporting & ROI','sheet']] },
   { h:'Conversion & nurturing', i:'chat', items:[['Lead qualification','users'],['Lead nurturing & follow-up','chat'],['Landing page optimisation','funnel'],['Email & WhatsApp sequences','mail'],['Conversion tracking','code']] },
   { h:'Content & social', i:'cal', items:[['Content calendars','cal'],['Ad copywriting','pen'],['Reels & short-form for ads','play'],['Community & DM management','chat'],['Instagram & Facebook growth','users']] },
@@ -228,7 +279,7 @@ const COMP = ['CRM management','Marketing automation','B2B lead generation','Vid
 
 const JOBS = [
   { id:'avg', now:true, co:'AVG Primetech', role:'Video Editor · Creative & Marketing Support', when:'Jul 2026 – Present', where:'Bangalore, Karnataka',
-    pts:['Edit promotional, marketing and social media videos for digital platforms.','Produce engaging video content with transitions, motion graphics and colour correction.','Handle audio editing and mixing to improve content quality.','Create graphic design assets and promotional materials.','Develop video content for Instagram, YouTube and other digital channels.','Support ongoing creative and digital marketing initiatives.'] },
+    pts:['Edit promotional, marketing and social media videos for digital platforms.','Produce engaging video content with transitions, motion graphics and colour correction.','Handle audio editing and mixing to improve content quality.','Create graphic design assets and promotional materials.','Develop video content for Instagram, YouTube and other digital channels.','Support ongoing creative and digital marketing initiatives.','Create AI-assisted reels: scripts and copy, ChatGPT and Claude for content and prompts, AI Flow footage, edited in Premiere Pro and animated in After Effects.'] },
   { id:'ts', co:'TS Techy', role:'Marketing & Business Consultant · Project-based', when:'May 2025 – Present', where:'Project-based',
     pts:['Provide project-based consulting for digital marketing, marketing strategy and business requirements.','Support digital marketing service planning and marketing solution recommendations.','Assist with marketing service pricing, quotations and commercial planning.','Evaluate business requirements and suggest relevant marketing approaches.','Support marketing positioning, promotional planning and business development.','Coordinate marketing discussions and consult on business growth opportunities.'] },
   { id:'autowelkin', co:'Autowelkin', role:'Social Media Marketing Executive', when:'May 2026 – Jul 2026', where:'Coimbatore, Tamil Nadu',
@@ -356,7 +407,7 @@ function App() {
   // Fade-up reveal for blocks below the first screen
   useEffect(() => {
     if (RM || !('IntersectionObserver' in window)) return;
-    const els = [...document.querySelectorAll('.band .sh, .svc, .grp, .job, .cc, .edu > div, .contact > div, .steps, .panel, .crstats, .filters, .nums > div, .frame, .comp')]
+    const els = [...document.querySelectorAll('.band .sh, .svc, .grp, .job, .cc, .edu > div, .contact > div, .steps, .panel, .crstats, .filters, .nums > div, .frame, .comp, .afs, .av')]
       .filter(el => el.getBoundingClientRect().top > innerHeight);
     const io = new IntersectionObserver(es => es.forEach(e => {
       if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
@@ -386,7 +437,7 @@ function App() {
       <a className={'totop' + (top ? ' on' : '')} href="#home" aria-label="Back to top"><I n="arrow"/></a>
       <div className="navw"><nav>
         <a className="brand" href="#home"><img src="img/avatar.webp" alt=""/>Sanjeeth.</a>
-        <div className="links"><a href="#home">Home</a><a href="#services">Services</a><a href="#flow">Growth flow</a><a href="#toolkit">Toolkit</a><a href="#about">About</a><a href="#experience">Experience</a><a href="#campaigns">Campaigns</a><a href="#creatives">Creatives</a><a href="https://drive.google.com/drive/folders/1yYnsy01--KET6TybK1a1zKqZ3tM5W8T8" target="_blank" rel="noopener">Portfolio</a><a href="sanjeethkumar-cv.pdf" target="_blank" rel="noopener">Resume</a></div>
+        <div className="links"><a href="#services">Services</a><a href="#flow">Growth flow</a><a href="#toolkit">Toolkit</a><a href="#about">About</a><a href="#experience">Experience</a><a href="#campaigns">Campaigns</a><a href="#aivideo">AI videos</a><a href="#creatives">Creatives</a><a href="https://drive.google.com/drive/folders/1yYnsy01--KET6TybK1a1zKqZ3tM5W8T8" target="_blank" rel="noopener">Portfolio</a><a href="sanjeethkumar-cv.pdf" target="_blank" rel="noopener">Resume</a></div>
         <a className="cta" href="#contact">Let's talk <I n="arrow"/></a>
       </nav></div>
 
@@ -520,6 +571,8 @@ function App() {
           <div><strong>UI/UX Design Certification</strong><small>SDLC Institute, Coimbatore · 2024–2025</small></div>
         </div>
       </div></section>
+
+      <AiVideos/>
 
       <Creatives/>
 
