@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { BR } from './brands.js';
 
 const RM = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
 const FINE = window.matchMedia && matchMedia('(pointer: fine)').matches;
@@ -197,20 +198,20 @@ function Creatives() {
 }
 
 const TOOLS = [
-  { n:'Meta Ads Manager', c:'Paid social', i:'mega' }, { n:'Google Ads', c:'Paid search', i:'target' }, { n:'Meta Lead Ads', c:'Instant forms', i:'form' },
-  { n:'Landing pages', c:'Lead capture', i:'funnel' }, { n:'WhatsApp Business', c:'Lead follow-up', i:'chat' }, { n:'Klaviyo', c:'Email flows', i:'mail' },
-  { n:'Lead tracking sheets', c:'Pipeline', i:'sheet' }, { n:'Meta Business Suite', c:'Pages & inbox', i:'users' },
-  { n:'Google Analytics 4', c:'Analytics', i:'chart' }, { n:'Google Search Console', c:'SEO', i:'search' }, { n:'Keyword Planner', c:'Search research', i:'search' },
-  { n:'Meta Pixel', c:'Conversion tracking', i:'code' }, { n:'Google Business Profile', c:'Local search', i:'map' }, { n:'Pinterest', c:'Social', i:'pin' },
-  { n:'Newspaper ads', c:'Print media', i:'news' }, { n:'TV ads', c:'Broadcast', i:'tv' },
-  { n:'Audience targeting', c:'Strategy', i:'target' }, { n:'Retargeting', c:'Strategy', i:'users' }, { n:'A/B testing', c:'Optimisation', i:'layers' },
-  { n:'Funnel strategy', c:'Strategy', i:'funnel' }, { n:'Lead nurturing', c:'Conversion', i:'chat' }, { n:'Ad copywriting', c:'Content', i:'pen' },
-  { n:'Content calendars', c:'Social', i:'cal' }, { n:'Campaign reporting', c:'ROI', i:'sheet' },
-  { n:'HubSpot', c:'CRM & automation', i:'users' }, { n:'Salesforce', c:'CRM', i:'cloud' }, { n:'LinkedIn Ads', c:'B2B leads', i:'mega' }, { n:'YouTube Ads', c:'Video ads', i:'play' },
-  { n:'Google Tag Manager', c:'Tracking', i:'code' }, { n:'Looker Studio', c:'Dashboards', i:'chart' }, { n:'Semrush', c:'SEO research', i:'search' }, { n:'Google Forms & Typeform', c:'Lead capture', i:'form' },
-  { n:'Meta Creator Studio', c:'Content publishing', i:'cal' }, { n:'Photoshop', c:'Ad creatives', i:'brush' }, { n:'Illustrator', c:'Ad creatives', i:'pen' }, { n:'Premiere Pro', c:'Video ads', i:'film' },
-  { n:'After Effects', c:'Motion ads', i:'spark' }, { n:'CapCut', c:'Reels', i:'cut' },
+  { n:'Meta Ads Manager', c:'Paid social', b:'meta' }, { n:'Google Ads', c:'Search & display', b:'gads' }, { n:'Meta Lead Ads', c:'Instant forms', b:'facebook' },
+  { n:'LinkedIn Ads', c:'B2B leads', b:'linkedin' }, { n:'YouTube Ads', c:'Video ads', b:'youtube' }, { n:'Meta Business Suite', c:'Pages & inbox', b:'meta' },
+  { n:'Meta Pixel', c:'Conversion tracking', b:'meta' }, { n:'Keyword Planner', c:'Search research', b:'gads' }, { n:'Meta Creator Studio', c:'Content publishing', b:'instagram' },
+  { n:'Google Analytics 4', c:'Analytics', b:'ga' }, { n:'Google Tag Manager', c:'Tracking', b:'gtm' }, { n:'Looker Studio', c:'Dashboards', b:'looker' },
+  { n:'Google Search Console', c:'SEO', b:'gsc' }, { n:'Semrush', c:'SEO research', b:'semrush' }, { n:'HubSpot', c:'CRM & automation', b:'hubspot' },
+  { n:'Salesforce', c:'CRM', b:'salesforce' }, { n:'Google Business Profile', c:'Local search', b:'gmaps' },
+  { n:'WhatsApp Business', c:'Lead follow-up', b:'whatsapp' }, { n:'Google Forms', c:'Lead capture', b:'gforms' }, { n:'Typeform', c:'Lead capture', b:'typeform' },
+  { n:'Google Sheets', c:'Lead tracking', b:'gsheets' }, { n:'Klaviyo', c:'Email flows', i:'mail', col:'#232426' }, { n:'Pinterest', c:'Social', b:'pinterest' },
+  { n:'Photoshop', c:'Ad creatives', b:'ps' }, { n:'Illustrator', c:'Ad creatives', b:'ai' }, { n:'Premiere Pro', c:'Video ads', b:'pr' },
+  { n:'After Effects', c:'Motion ads', b:'ae' }, { n:'CapCut', c:'Reels', i:'cut', col:'#111111' },
 ];
+const BRX = [[/Meta Lead/,'facebook'],[/Creator Studio|Instagram/,'instagram'],[/Meta/,'meta'],[/Google Ads|Keyword Planner/,'gads'],[/LinkedIn/,'linkedin'],[/YouTube/,'youtube'],[/Google Forms|Typeform/,'gforms'],[/WhatsApp/,'whatsapp'],[/Analytics 4/,'ga'],[/Tag Manager/,'gtm'],[/Looker/,'looker'],[/Semrush/,'semrush'],[/Search Console/,'gsc'],[/Business Profile/,'gmaps'],[/HubSpot/,'hubspot'],[/Salesforce/,'salesforce'],[/Photoshop/,'ps'],[/Illustrator/,'ai'],[/Premiere/,'pr'],[/After Effects/,'ae']];
+const brandOf = t => { const m = BRX.find(([r]) => r.test(t)); return m ? m[1] : null; };
+const Logo = ({ b, i }) => BR[b] ? <span className="blw" dangerouslySetInnerHTML={{ __html: BR[b].s }}/> : <I n={i}/>;
 const GROUPS = [
   { h:'Paid advertising', i:'mega', items:[['Meta Ads Manager','mega'],['Meta Business Suite','users'],['Google Ads','target'],['LinkedIn Ads','mega'],['YouTube Ads','play'],['Keyword Planner','search'],['Meta Pixel tracking','code']] },
   { h:'Lead generation', i:'funnel', items:[['Meta Lead Ads (instant forms)','form'],['Google Forms & Typeform','form'],['Landing pages','funnel'],['WhatsApp Business follow-up','chat'],['Klaviyo email flows','mail'],['Lead tracking & reporting','sheet']] },
@@ -286,7 +287,7 @@ const Ticker = ({ items, cls = '' }) => {
 
 const ToolRow = ({ list, rev }) => {
   const row = k => <div className="run" key={k} aria-hidden={k ? 'true' : undefined}>{list.map(t => (
-    <div className="tool" key={t.n}><span className="ti"><I n={t.i}/></span><span><b>{t.n}</b><small>{t.c}</small></span></div>
+    <div className="tool" key={t.n} style={{'--b': t.b ? BR[t.b].c : t.col}}><span className="ti"><Logo b={t.b} i={t.i}/></span><span><b>{t.n}</b><small>{t.c}</small></span></div>
   ))}</div>;
   return <div className={'trow' + (rev ? ' rev' : '')}><div style={{display:'flex',width:'max-content'}}>{row(0)}{row(1)}</div></div>;
 };
@@ -385,7 +386,7 @@ function App() {
       <a className={'totop' + (top ? ' on' : '')} href="#home" aria-label="Back to top"><I n="arrow"/></a>
       <div className="navw"><nav>
         <a className="brand" href="#home"><img src="img/avatar.webp" alt=""/>Sanjeeth.</a>
-        <div className="links"><a href="#home">Home</a><a href="#services">Services</a><a href="#flow">Growth flow</a><a href="#toolkit">Toolkit</a><a href="#about">About</a><a href="#experience">Experience</a><a href="#campaigns">Campaigns</a><a href="#creatives">Creatives</a><a href="https://drive.google.com/drive/folders/1yYnsy01--KET6TybK1a1zKqZ3tM5W8T8" target="_blank" rel="noopener">Portfolio</a><a href="sanjeethkumar%20-%20CV.pdf" target="_blank" rel="noopener">Resume</a></div>
+        <div className="links"><a href="#home">Home</a><a href="#services">Services</a><a href="#flow">Growth flow</a><a href="#toolkit">Toolkit</a><a href="#about">About</a><a href="#experience">Experience</a><a href="#campaigns">Campaigns</a><a href="#creatives">Creatives</a><a href="https://drive.google.com/drive/folders/1yYnsy01--KET6TybK1a1zKqZ3tM5W8T8" target="_blank" rel="noopener">Portfolio</a><a href="sanjeethkumar-cv.pdf" target="_blank" rel="noopener">Resume</a></div>
         <a className="cta" href="#contact">Let's talk <I n="arrow"/></a>
       </nav></div>
 
@@ -451,10 +452,10 @@ function App() {
       <section className="band tools" id="toolkit"><div className="wrap">
         <Eyebrow>My toolkit</Eyebrow><h2>My marketing & <span className="g">lead-gen stack</span></h2>
       </div>
-        <div style={{marginTop:14}}><ToolRow list={TOOLS.slice(0, 13)}/><ToolRow list={TOOLS.slice(13, 26)} rev/><ToolRow list={TOOLS.slice(26)}/></div>
+        <div style={{marginTop:14}}><ToolRow list={TOOLS.slice(0, 9)}/><ToolRow list={TOOLS.slice(9, 17)} rev/><ToolRow list={TOOLS.slice(17)}/></div>
         <div className="wrap">
           <div className="groups">{GROUPS.map(g => (
-            <Tilt className="grp" key={g.h}><h3><span><I n={g.i}/></span>{g.h}</h3><ul>{g.items.map(([t, ic]) => <li key={t}><I n={ic}/>{t}</li>)}</ul></Tilt>
+            <Tilt className="grp" key={g.h}><h3><span><I n={g.i}/></span>{g.h}</h3><ul>{g.items.map(([t, ic]) => (b => <li key={t} className={b ? 'brd' : ''} style={b ? {'--b': BR[b].c} : undefined}>{b ? <Logo b={b}/> : <I n={ic}/>}{t}</li>)(brandOf(t)))}</ul></Tilt>
           ))}</div>
           <div className="comp">{COMP.map(c => <span key={c}>{c}</span>)}</div>
         </div>
@@ -479,7 +480,7 @@ function App() {
           <p>A digital and creative marketer with 2+ years across performance advertising, integrated campaigns, branding, content, graphic design, video production and lead generation.</p>
           <p>I plan and run Meta and Google Ads, newspaper and TV campaigns, ATL and BTL activity, SEO and social media, and I make the creatives that run in them. I've coordinated vendors, negotiated quotations, managed media placements and worked directly with clients. Today I edit video at AVG Primetech and consult on marketing for TS Techy.</p>
           <div className="nums"><div><b>2+ yrs</b><span>marketing & creative</span></div><div><b>5</b><span>brands worked with</span></div><div><b>3</b><span>newspapers placed</span></div></div>
-          <div className="sig"><a className="btn" href="sanjeethkumar%20-%20CV.pdf" target="_blank" rel="noopener">Download CV <i><I n="arrow"/></i></a><a className="btn dk" href="#contact">Let's talk <i><I n="arrow"/></i></a><em>Sanjeeth</em></div>
+          <div className="sig"><a className="btn" href="sanjeethkumar-cv.pdf" target="_blank" rel="noopener">Download CV <i><I n="arrow"/></i></a><a className="btn dk" href="#contact">Let's talk <i><I n="arrow"/></i></a><em>Sanjeeth</em></div>
         </div>
       </div></section>
 
@@ -533,7 +534,7 @@ function App() {
           <div><span className="ci"><I n="link"/></span><small>LinkedIn</small><a href="https://www.linkedin.com/in/sanjeeth-kumar-s-n" target="_blank" rel="noopener">in/sanjeeth-kumar-s-n</a></div>
           <div><span className="ci"><I n="map"/></span><small>Based in</small><span>Bengaluru, Karnataka, India</span></div>
         </div>
-        <div className="cvrow" style={{marginTop:24}}><a className="btn" href="sanjeethkumar%20-%20CV.pdf" target="_blank" rel="noopener">Download my CV (PDF) <i><I n="arrow"/></i></a></div>
+        <div className="cvrow" style={{marginTop:24}}><a className="btn" href="sanjeethkumar-cv.pdf" target="_blank" rel="noopener">Download my CV (PDF) <i><I n="arrow"/></i></a></div>
         {copied === 'fail' && <p className="fine">Copy isn't allowed here. Select the text above instead.</p>}
         <div className="fine"><span>© 2026 Sanjeeth Kumar</span><span>Full portfolio of creatives and videos: <a href="https://drive.google.com/drive/folders/1yYnsy01--KET6TybK1a1zKqZ3tM5W8T8" target="_blank" rel="noopener">Google Drive</a></span></div>
       </div></footer>
