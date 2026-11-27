@@ -3,6 +3,7 @@ import { BR } from './brands.js';
 import Ooh from './Ooh.jsx';
 import Edu from './Edu.jsx';
 import './fixes.css';
+import { RecruiterCard, StickyBar } from './Recruiter.jsx';
 
 const RM = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
 const FINE = window.matchMedia && matchMedia('(pointer: fine)').matches;
@@ -485,6 +486,8 @@ function App() {
         </div>
       </header>
 
+      <RecruiterCard/>
+
       <div className="mq"><Ticker items={TICKER} cls="b"/><Ticker items={TICKER.slice().reverse()} cls="a"/></div>
 
       <section className="band" id="services"><div className="wrap">
@@ -586,7 +589,7 @@ function App() {
         <h2>Let's build your <span className="g">next campaign</span></h2>
         <div className="contact">
           <div><span className="ci"><I n="mail"/></span><small>Email</small><a href="mailto:2023sanjeeth@gmail.com">2023sanjeeth@gmail.com</a><br/><button className="copy" onClick={() => copy('2023sanjeeth@gmail.com', 'e')}>{copied === 'e' ? 'Copied' : 'Copy email'}</button></div>
-          <div><span className="ci"><I n="phone"/></span><small>Phone</small><span>+91 78456 92501</span><br/><button className="copy" onClick={() => copy('+917845692501', 'p')}>{copied === 'p' ? 'Copied' : 'Copy number'}</button></div>
+          <div><span className="ci"><I n="phone"/></span><small>Phone</small><span>+91 78456 92501</span><br/><button className="copy" onClick={() => copy('+917845692501', 'p')}>{copied === 'p' ? 'Copied' : 'Copy number'}</button> <a className="copy" style={{display:'inline-flex',alignItems:'center',textDecoration:'none'}} href="https://wa.me/917845692501" target="_blank" rel="noopener">WhatsApp</a></div>
           <div><span className="ci"><I n="link"/></span><small>LinkedIn</small><a href="https://www.linkedin.com/in/sanjeeth-kumar-s-n" target="_blank" rel="noopener">in/sanjeeth-kumar-s-n</a></div>
           <div><span className="ci"><I n="map"/></span><small>Based in</small><span>Bengaluru, Karnataka, India</span></div>
         </div>
@@ -594,6 +597,7 @@ function App() {
         {copied === 'fail' && <p className="fine">Copy isn't allowed here. Select the text above instead.</p>}
         <div className="fine"><span>© 2026 Sanjeeth Kumar</span><span>Full portfolio of creatives and videos: <a href="https://drive.google.com/drive/folders/1yYnsy01--KET6TybK1a1zKqZ3tM5W8T8" target="_blank" rel="noopener">Google Drive</a></span></div>
       </div></footer>
+      <StickyBar/>
     </>
   );
 }
