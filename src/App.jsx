@@ -135,6 +135,67 @@ function Flow() {
   );
 }
 
+const CREATIVES = [
+  { f:'c01', c:'Housewife-kkum Retirement', t:'Launch hero with amenities strip', fmt:'Feed 1:1' },
+  { f:'c02', c:'Housewife-kkum Retirement', t:'Lifestyle shot, Pollachi', fmt:'Feed 1:1' },
+  { f:'c03', c:'Housewife-kkum Retirement', t:'Story and Reels cover', fmt:'Story 9:16' },
+  { f:'c04', c:'Housewife-kkum Retirement', t:'"Do nothing" hook', fmt:'Feed 1:1' },
+  { f:'c05', c:'Housewife-kkum Retirement', t:'Home theatre lifestyle', fmt:'Feed 1:1' },
+  { f:'c06', c:'Avanga Paathu Panga', t:'Wellness and yoga', fmt:'Feed 1:1' },
+  { f:'c07', c:'Offers & events', t:'Visit today, cab on us', fmt:'Feed 1:1' },
+  { f:'c08', c:'Offers & events', t:'Akshaya Tritiya gold offer', fmt:'Feed 1:1' },
+  { f:'c09', c:'Care series', t:'Care crafted with respect', fmt:'Feed 1:1' },
+  { f:'c10', c:'Care series', t:'Care you can trust', fmt:'Feed 1:1' },
+  { f:'c11', c:'Care series', t:'Growing older, growing closer', fmt:'Feed 1:1' },
+  { f:'c12', c:'Care series', t:'Live close, not crowded', fmt:'Feed 1:1' },
+];
+
+function Creatives() {
+  const cats = ['All', ...new Set(CREATIVES.map(c => c.c))];
+  const [cat, setCat] = useState('All');
+  const [open, setOpen] = useState(-1);
+  const list = cat === 'All' ? CREATIVES : CREATIVES.filter(c => c.c === cat);
+  useEffect(() => {
+    if (open < 0) return;
+    const k = e => {
+      if (e.key === 'Escape') setOpen(-1);
+      if (e.key === 'ArrowRight') setOpen(i => (i + 1) % list.length);
+      if (e.key === 'ArrowLeft') setOpen(i => (i - 1 + list.length) % list.length);
+    };
+    addEventListener('keydown', k);
+    document.body.style.overflow = 'hidden';
+    return () => { removeEventListener('keydown', k); document.body.style.overflow = ''; };
+  }, [open, list.length]);
+  const cur = open >= 0 ? list[open] : null;
+  return (
+    <section className="band dark" id="creatives" style={{borderTop:0}}><div className="wrap">
+      <div className="sh"><div><Eyebrow>Ad creatives</Eyebrow><h2>Creatives built for <span className="g">Meta & Google Ads</span></h2></div>
+        <p className="fl-lede">Feed and story creatives I designed for Aalam Senior Living's Meta and Google Ads lead-generation campaigns: Tamil hooks, offer-led ads and a premium care series.</p></div>
+      <div className="crstats"><span><b>{CREATIVES.length}</b> creatives</span><span><b>{cats.length - 1}</b> campaigns</span><span><b>Meta</b> &amp; <b>Google Ads</b></span><span><b>Feed 1:1</b> &amp; <b>Story 9:16</b></span></div>
+      <div className="filters" role="group" aria-label="Filter by campaign">{cats.map(c => (
+        <button key={c} className={cat === c ? 'on' : ''} aria-pressed={cat === c} onClick={() => { setCat(c); setOpen(-1); }}>
+          {c}<b>{c === 'All' ? CREATIVES.length : CREATIVES.filter(x => x.c === c).length}</b>
+        </button>
+      ))}</div>
+      <div className="masonry" key={cat}>{list.map((c, i) => (
+        <button key={c.f} className="cr" style={{animationDelay: (i * 0.05) + 's'}} onClick={() => setOpen(i)} aria-label={'Open ' + c.t}>
+          <span className="im"><img src={'creatives/' + c.f + '.webp'} alt={c.c + ': ' + c.t} loading="lazy"/></span>
+          <span className="cap"><small>{c.c} · {c.fmt}</small><b>{c.t}</b></span>
+        </button>
+      ))}</div>
+      {cur && (
+        <div className="lb" role="dialog" aria-modal="true" aria-label={cur.t} onClick={e => { if (e.target === e.currentTarget) setOpen(-1); }}>
+          <img src={'creatives/' + cur.f + '.webp'} alt={cur.c + ': ' + cur.t}/>
+          <div className="lbcap"><small>{cur.c} · {cur.fmt}</small><b>{cur.t}</b><span>{open + 1} / {list.length}</span></div>
+          <button className="x" onClick={() => setOpen(-1)} aria-label="Close">✕</button>
+          <button className="pv" onClick={() => setOpen((open - 1 + list.length) % list.length)} aria-label="Previous creative">←</button>
+          <button className="nx" onClick={() => setOpen((open + 1) % list.length)} aria-label="Next creative">→</button>
+        </div>
+      )}
+    </div></section>
+  );
+}
+
 const TOOLS = [
   { n:'Meta Ads Manager', c:'Paid social', i:'mega' }, { n:'Google Ads', c:'Paid search', i:'target' }, { n:'Meta Lead Ads', c:'Instant forms', i:'form' },
   { n:'Landing pages', c:'Lead capture', i:'funnel' }, { n:'WhatsApp Business', c:'Lead follow-up', i:'chat' }, { n:'Klaviyo', c:'Email flows', i:'mail' },
@@ -269,7 +330,7 @@ function App() {
     <>
       <div className="navw"><nav>
         <a className="brand" href="#home"><img src="img/avatar.webp" alt=""/>Sanjeeth.</a>
-        <div className="links"><a href="#home">Home</a><a href="#services">Services</a><a href="#flow">Growth flow</a><a href="#toolkit">Toolkit</a><a href="#about">About</a><a href="#experience">Experience</a><a href="#campaigns">Campaigns</a><a href="https://drive.google.com/drive/folders/1yYnsy01--KET6TybK1a1zKqZ3tM5W8T8" target="_blank" rel="noopener">Portfolio</a><a href="sanjeethkumar%20-%20CV.pdf" target="_blank" rel="noopener">Resume</a></div>
+        <div className="links"><a href="#home">Home</a><a href="#services">Services</a><a href="#flow">Growth flow</a><a href="#toolkit">Toolkit</a><a href="#about">About</a><a href="#experience">Experience</a><a href="#campaigns">Campaigns</a><a href="#creatives">Creatives</a><a href="https://drive.google.com/drive/folders/1yYnsy01--KET6TybK1a1zKqZ3tM5W8T8" target="_blank" rel="noopener">Portfolio</a><a href="sanjeethkumar%20-%20CV.pdf" target="_blank" rel="noopener">Resume</a></div>
         <a className="cta" href="#contact">Let's talk <I n="arrow"/></a>
       </nav></div>
 
@@ -403,6 +464,8 @@ function App() {
           <div><strong>UI/UX Design Certification</strong><small>SDLC Institute, Coimbatore · 2024–2025</small></div>
         </div>
       </div></section>
+
+      <Creatives/>
 
       <div className="mq" style={{height:110}}><Ticker items={TICKER} cls="a"/></div>
 
