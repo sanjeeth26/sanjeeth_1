@@ -1,5 +1,5 @@
 /* ---- Outdoor (hoarding) campaign ---- */
-nav .links a{padding:10px 9px}
+nav .links a{padding:10px 8px}
 .ooh{background:var(--bg)}
 .ostats{display:flex;flex-wrap:wrap;gap:10px;margin:-6px 0 34px}
 .ostats span{font-size:14px;padding:6px 14px;border-radius:999px;background:var(--card);border:1px solid var(--line);color:var(--mute)}

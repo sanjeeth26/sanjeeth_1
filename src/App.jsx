@@ -1,5 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { BR } from './brands.js';
+import Ooh from './Ooh.jsx';
+import Edu from './Edu.jsx';
+import './fixes.css';
 
 const RM = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
 const FINE = window.matchMedia && matchMedia('(pointer: fine)').matches;
@@ -437,7 +440,7 @@ function App() {
       <a className={'totop' + (top ? ' on' : '')} href="#home" aria-label="Back to top"><I n="arrow"/></a>
       <div className="navw"><nav>
         <a className="brand" href="#home"><img src="img/avatar.webp" alt=""/>Sanjeeth.</a>
-        <div className="links"><a href="#services">Services</a><a href="#flow">Growth flow</a><a href="#toolkit">Toolkit</a><a href="#about">About</a><a href="#experience">Experience</a><a href="#campaigns">Campaigns</a><a href="#aivideo">AI videos</a><a href="#creatives">Creatives</a><a href="https://drive.google.com/drive/folders/1yYnsy01--KET6TybK1a1zKqZ3tM5W8T8" target="_blank" rel="noopener">Portfolio</a><a href="sanjeethkumar-cv.pdf" target="_blank" rel="noopener">Resume</a></div>
+        <div className="links"><a href="#services">Services</a><a href="#flow">Growth</a><a href="#toolkit">Toolkit</a><a href="#about">About</a><a href="#experience">Experience</a><a href="#education">Education</a><a href="#campaigns">Campaigns</a><a href="#aivideo">AI videos</a><a href="#creatives">Creatives</a><a href="#outdoor">Outdoor</a><a href="sanjeethkumar-cv.pdf" target="_blank" rel="noopener">Resume</a></div>
         <a className="cta" href="#contact">Let's talk <I n="arrow"/></a>
       </nav></div>
 
@@ -550,7 +553,9 @@ function App() {
         ))}</div>
       </div></section>
 
-      <section className="band" id="campaigns" style={{paddingTop:0}}><div className="wrap">
+      <Edu/>
+
+      <section className="band" id="campaigns"><div className="wrap">
         <Eyebrow>Campaigns</Eyebrow><h2>Selected <span className="g">work</span></h2>
         <div className="cards">
           <Tilt className="cc" max={8}><div className="art"><img src="img/aalam-ad.webp" alt="Aalam Senior Living ad by StepsStone: Luxury senior living from ₹37L onwards" loading="lazy"/></div><div className="tx">
@@ -565,16 +570,13 @@ function App() {
           </div></div>
         </div>
         <div style={{marginTop:26}}><a className="btn" href="https://drive.google.com/drive/folders/1yYnsy01--KET6TybK1a1zKqZ3tM5W8T8" target="_blank" rel="noopener">View full portfolio on Google Drive <i><I n="arrow"/></i></a></div>
-        <div className="edu">
-          <div><strong>BCA, Cyber Security</strong><small>Currently pursuing</small></div>
-          <div><strong>Higher Secondary Certificate</strong><small>Tamil Nadu State Board · 2021–2022</small></div>
-          <div><strong>UI/UX Design Certification</strong><small>SDLC Institute, Coimbatore · 2024–2025</small></div>
-        </div>
       </div></section>
 
       <AiVideos/>
 
       <Creatives/>
+
+      <Ooh/>
 
       <div className="mq" style={{height:110}}><Ticker items={TICKER} cls="a"/></div>
 
